@@ -1,0 +1,4 @@
+1.daisyui (library ) for component 
+2.tailwind css framework for styling
+3.react-icons 
+4.daisyui plugins
