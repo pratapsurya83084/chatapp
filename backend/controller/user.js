@@ -67,24 +67,25 @@ const loginUser = async (req, res) => {
 
     // Compare the provided password with the hashed password in the database
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    const token = jwt.sign({ id: user._id },process.env.JWT_SECREATE , { expiresIn: "1h" });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECREATE, {
+      expiresIn: "1h",
+    });
 
-   //setcookies token
-   res.cookie("jwt",token,{
-    httpOnly:true,
-    secure:true,
-    sameSite:"strict"
-   })
-
+    //setcookies token
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    });
 
     // console.log(token)
     if (isPasswordValid) {
       return res.status(200).json({
         message: "Logged in successfully",
+        user: user,
         status: true,
         token: token,
       });
-      
     } else {
       return res
         .status(400)
@@ -93,7 +94,19 @@ const loginUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
- 
 };
 
-export { registerUser, getUsers, loginUser };
+//logout
+const logoutUser = async (req, res) => {
+  try {
+    
+    res.clearCookie("jwt");
+    return res
+      .status(200)
+      .json({ message: "Logged out successfully", status: true });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+export { registerUser, getUsers, loginUser,logoutUser };
