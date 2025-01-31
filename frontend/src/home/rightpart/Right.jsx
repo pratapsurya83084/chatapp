@@ -5,7 +5,11 @@ import TypeMessage from "./TypeMessage";
 const Right = () => {
   return <div className="w-[70%]  bg-slate-900 text-gray-300">
   <ChatUser/>
-    <Messages/>
+  <div 
+  className=" " style={{minHeight:"calc(92vh - 8vh)"}} >
+  <Messages/>
+  </div>
+
     <TypeMessage/>
     </div>;
 };

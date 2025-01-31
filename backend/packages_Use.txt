@@ -1,0 +1,4 @@
+this aplicateion used following packages=
+1. jwt for auth
+2.socket io for communicate bet 2 user
+3. zustand
