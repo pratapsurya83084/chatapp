@@ -80,12 +80,16 @@ const loginUser = async (req, res) => {
 
     // console.log(token)
     if (isPasswordValid) {
+     
+
       return res.status(200).json({
         message: "Logged in successfully",
         user: user,
         status: true,
         token: token,
       });
+      
+     
     } else {
       return res
         .status(400)
@@ -96,11 +100,21 @@ const loginUser = async (req, res) => {
   }
 };
 
+
+
+
 //logout
 const logoutUser = async (req, res) => {
   try {
     
-    res.clearCookie("jwt");
+    // res.clearCookie("jwt");
+   
+    res.cookie("jwt", "", { 
+      httpOnly: true, 
+      secure: false,  // Change to `true` in production (if using HTTPS)
+      sameSite: "strict", 
+      expires: new Date(0)  // Set expiration to past time
+    });
     return res
       .status(200)
       .json({ message: "Logged out successfully", status: true });

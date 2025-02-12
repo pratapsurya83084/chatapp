@@ -2,3 +2,7 @@
 2.tailwind css framework for styling
 3.react-icons 
 4.daisyui plugins
+5. npm  i js-cookie = use for js-cookie is a lightweight JavaScript 
+                    library that helps manage cookies easily in the frontend.
+                    It provides a simpler way to set, get, and remove cookies 
+                    compared to using document.cookie.

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import  axios from 'axios';
+import {useAuth}  from '../context/AuthProvider';
 const Signup = () => {
   const {
     register,
@@ -9,6 +10,8 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
   const [Error, setError] = useState();
+const {authUser,SetAuthUser}=useAuth;
+// console.log("user authen :",authUser);
 
   const onSubmit =async (data) => {
     // console.log(data.password,data.confirmpassword); // Handle form submission (you can send it to backend)
@@ -36,12 +39,13 @@ const Signup = () => {
         }
       );
     
-      console.log(api.data);
+      // console.log(api.data);
     
       if (api.data) {
         alert("User created successfully");
         localStorage.setItem("ChatApp", JSON.stringify(api.data)); // Store data properly
       }
+      SetAuthUser(api.data);
     } catch (error) {
       if (error.response) {
         // Check if API response has a message or error field
