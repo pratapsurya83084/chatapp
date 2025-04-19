@@ -1,7 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import {Link ,useNavigate}  from 'react-router-dom';
 const Login = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -20,8 +22,9 @@ const Login = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        withCredentials:true             //must be required for set cooies in broweser 
-        }
+          withCredentials: true,                     //must be required for set cooies in broweser 
+
+      }
         
       );
     
@@ -30,6 +33,7 @@ const Login = () => {
       if (api.data) {
         alert("User Login successfully");
         // localStorage.setItem("ChatApp", JSON.stringify(api.data)); // Store data properly
+        navigate('/');
       }
     } catch (error) {
       if (error.response) {
@@ -116,7 +120,7 @@ const Login = () => {
           <div className="flex flex-row justify-between text-sm">
             <p>
               If you don't have an account?{" "}
-              <span className="text-blue-600 cursor-pointer">Signup</span>
+              <span className="text-blue-600 cursor-pointer"> <Link to="/signup">Signup</Link> </span>
             </p>
             <button
               type="submit"

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import  axios from 'axios';
 import {useAuth}  from '../context/AuthProvider';
+import {Link}  from 'react-router-dom';
 const Signup = () => {
   const {
     register,
@@ -36,6 +37,7 @@ const {authUser,SetAuthUser}=useAuth;
           headers: {
             "Content-Type": "application/json",
           },
+          withCredentials:true
         }
       );
     
@@ -174,7 +176,7 @@ const {authUser,SetAuthUser}=useAuth;
           {/* Submit Button */}
           <div className="flex flex-row justify-between text-sm ">
             <p>
-              Have an account? <span>Login</span>{" "}
+              Have an account? <span> <Link to="/login">Login</Link> </span>{" "}
             </p>
             <button className="w-[70px] bg-green-900 text-white py-2 rounded-lg shadow-md  transition duration-300">
               Signup

@@ -73,10 +73,11 @@ const loginUser = async (req, res) => {
 
     //setcookies token
     res.cookie("jwt", token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "strict",
-    });
+    httpsOnly: true,  // So that you can read it from the frontend
+    secure: true,    // Allow it on non-HTTPS (localhost or development)
+    sameSite: "lax",  // Allow cookie sharing
+  });
+    
 
     // console.log(token)
     if (isPasswordValid) {

@@ -9,10 +9,11 @@ import userRouter from './route/user.js';
 
 const app = express();
 //allow this frontend path or url
+
 app.use(cors(
   {
     origin: ["http://localhost:5173"],
-    credentials:true    ////must be require when want to set cookie or token
+    credentials: true   ////must be require when want to set cookie or token
   }
 ))
 // Middleware to parse JSON

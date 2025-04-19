@@ -1,20 +1,21 @@
-import React, { useContext, useState } from 'react'
-import { createContext } from 'react'
+import React, { createContext, useContext, useState ,useEffect} from 'react';
 import Cookies from 'js-cookie';
-const AuthContext = createContext()
 
-export const AuthProvider = ({children}) => {
-  console.log(localStorage.getItem("ChatApp"));
+const AuthContext = createContext();
 
- //cookies =  It provides a simpler way to set, get, and remove cookies compared to using document.cookie.
-   const initialUserState=Cookies.get("jwt") ||localStorage.getItem("ChatApp")  
-  //parse the user data and store  in state
-  const [authUser,SetAuthUser]=useState(initialUserState?JSON.parse(initialUserState): undefined)
-   return (
-    <AuthContext.Provider value={{authUser,SetAuthUser}}>
+export const AuthProvider = ({ children }) => {
+  // Read from cookies (must be non-httpOnly) or localStorage
+  const initialUserState = Cookies.get('jwt') || localStorage.getItem("ChatApp");
+
+  console.log("Auth Cookie/Storage value: ", initialUserState);
+
+  const [authUser, SetAuthUser] = useState(initialUserState || undefined);
+
+  return (
+    <AuthContext.Provider value={[authUser, SetAuthUser]}>
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
 
-export const useAuth=()=>useContext(AuthProvider)
+export const useAuth = () => useContext(AuthContext);
