@@ -6,16 +6,19 @@ import { useAuth } from './context/AuthProvider';
 import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
-  const [authUser, setAuthUser] = useAuth();
+  const [authUser] = useAuth();
   console.log("get jwt : ", authUser);
 
   return (
     <Routes>
+      {/* protected routes */}
       <Route
         path="/"
         element={
           authUser ? (
+           
             <div className="flex flex-row h-screen">
+              
               <Left />
               <Right />
             </div>
@@ -23,8 +26,9 @@ function App() {
             <Navigate to="/login" />
           )
         }
-      />
-      <Route path="/login" element={<Login />} />
+      /> 
+      {/* authUser? <Navigate to="/"/>: */}
+      <Route path="/login" element={  authUser? <Navigate to="/"/>:<Login />} />
       <Route path="/signup" element={<Signup />} />
     </Routes>
   );

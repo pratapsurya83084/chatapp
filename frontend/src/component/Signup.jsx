@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form";
 import  axios from 'axios';
 import {useAuth}  from '../context/AuthProvider';
 import {Link}  from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -46,6 +48,7 @@ const {authUser,SetAuthUser}=useAuth;
       if (api.data) {
         alert("User created successfully");
         localStorage.setItem("ChatApp", JSON.stringify(api.data)); // Store data properly
+     navigate('/login')
       }
       SetAuthUser(api.data);
     } catch (error) {

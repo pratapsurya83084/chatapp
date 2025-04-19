@@ -6,3 +6,6 @@
                     library that helps manage cookies easily in the frontend.
                     It provides a simpler way to set, get, and remove cookies 
                     compared to using document.cookie.
+
+  (js-cookies module is use to access browser cookies which is seted server )  for authentication.
+                    

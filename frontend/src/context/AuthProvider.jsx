@@ -10,12 +10,12 @@ export const AuthProvider = ({ children }) => {
   console.log("Auth Cookie/Storage value: ", initialUserState);
 
   const [authUser, SetAuthUser] = useState(initialUserState || undefined);
-
+  
   return (
     <AuthContext.Provider value={[authUser, SetAuthUser]}>
-      {children}
+      {children} 
     </AuthContext.Provider>
   );
 };
-
+  
 export const useAuth = () => useContext(AuthContext);

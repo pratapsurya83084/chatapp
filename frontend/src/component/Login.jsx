@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import axios from 'axios';
-import {Link ,useNavigate}  from 'react-router-dom';
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   const {
@@ -10,35 +10,32 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit =async (data) => {
+  const onSubmit = async (data) => {
     // console.log(data); // Handle form submission (send to backend)
- 
+
     try {
       // Call API
-      const api = await axios.post(
-        "http://localhost:2000/user/login",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,                     //must be required for set cooies in broweser 
+      const api = await axios.post("http://localhost:2000/user/login", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true, //must be required for set cooies in broweser
+      });
 
-      }
-        
-      );
-    
-      console.log(api.data);
-    
+      // console.log(api.data);
+
       if (api.data) {
         alert("User Login successfully");
         // localStorage.setItem("ChatApp", JSON.stringify(api.data)); // Store data properly
-        navigate('/');
+        navigate("/");
       }
     } catch (error) {
       if (error.response) {
         // Check if API response has a message or error field
-        const errorMessage = error.response.data?.message || error.response.data?.error || "Something went wrong!";
+        const errorMessage =
+          error.response.data?.message ||
+          error.response.data?.error ||
+          "Something went wrong!";
         alert("Error: " + errorMessage);
       } else if (error.request) {
         // Request was made but no response was received
@@ -48,8 +45,6 @@ const Login = () => {
         alert("Error: " + error.message);
       }
     }
-    
- 
   };
 
   return (
@@ -108,7 +103,6 @@ const Login = () => {
               placeholder="Password"
               {...register("password", {
                 required: "Password is required",
-               
               })}
             />
           </label>
@@ -120,7 +114,10 @@ const Login = () => {
           <div className="flex flex-row justify-between text-sm">
             <p>
               If you don't have an account?{" "}
-              <span className="text-blue-600 cursor-pointer"> <Link to="/signup">Signup</Link> </span>
+              <span className="text-blue-600 cursor-pointer">
+                {" "}
+                <Link to="/signup">Signup</Link>{" "}
+              </span>
             </p>
             <button
               type="submit"
