@@ -73,24 +73,19 @@ const loginUser = async (req, res) => {
 
     //setcookies token
     res.cookie("jwt", token, {
-    httpsOnly: true,  // So that you can read it from the frontend
-    secure: true,    // Allow it on non-HTTPS (localhost or development)
-    sameSite: "lax",  // Allow cookie sharing
-  });
-    
+      httpsOnly: true, // So that you can read it from the frontend
+      secure: true, // Allow it on non-HTTPS (localhost or development)
+      sameSite: "lax", // Allow cookie sharing
+    });
 
     // console.log(token)
     if (isPasswordValid) {
-     
-
       return res.status(200).json({
         message: "Logged in successfully",
         user: user,
         status: true,
         token: token,
       });
-      
-     
     } else {
       return res
         .status(400)
@@ -101,20 +96,16 @@ const loginUser = async (req, res) => {
   }
 };
 
-
-
-
 //logout
 const logoutUser = async (req, res) => {
   try {
-    
     // res.clearCookie("jwt");
-   
-    res.cookie("jwt", "", { 
-      httpOnly: true, 
-      secure: false,  // Change to `true` in production (if using HTTPS)
-      sameSite: "strict", 
-      expires: new Date(0)  // Set expiration to past time
+
+    res.cookie("jwt", "", {
+      httpOnly: true,
+      secure: false, // Change to `true` in production (if using HTTPS)
+      sameSite: "strict",
+      expires: new Date(0), // Set expiration to past time
     });
     return res
       .status(200)
@@ -124,4 +115,4 @@ const logoutUser = async (req, res) => {
   }
 };
 
-export { registerUser, getUsers, loginUser,logoutUser };
+export { registerUser, getUsers, loginUser, logoutUser };
