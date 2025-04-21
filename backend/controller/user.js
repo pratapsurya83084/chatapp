@@ -41,12 +41,25 @@ const registerUser = async (req, res) => {
 
 //get all user
 const getUsers = async (req, res) => {
-  const allUser = await User.find();
-  if (!allUser) {
-    res.status(400).json({ message: "User not found" });
+  try {
+    const loggedUserId = req.user._id; // The ID of the logged-in user
+
+    // Find all users, excluding the logged-in user
+    const allUsers = await User.find({ _id: { $ne: loggedUserId } });
+
+    if (!allUsers || allUsers.length === 0) {
+      return res.status(404).json({ message: "No users found" });
+    }
+
+    // Return all users except the logged-in user
+    res.status(200).json({ message: "Users found", users: allUsers });
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ message: "Server error" });
   }
-  res.status(201).json({ message: "User found", user: allUser });
 };
+
+
 
 //login
 const loginUser = async (req, res) => {

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useAuth } from '../../context/AuthProvider'
 const User = () => {
   const [user, setUser] = useState([]);
-
+  const [authUser] = useAuth();
+  console.log("get jwt : ", authUser);
   useEffect(() => {
     const getUsers = async () => {
       try {
         const api = await axios.get("http://localhost:2000/user/alluser", {
           headers: {
             "Content-Type": "application/json",
+            "authorization":authUser
           },
         });
         console.log("Fetched once:", api.data.user);
