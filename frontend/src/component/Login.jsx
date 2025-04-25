@@ -27,7 +27,8 @@ const Login = () => {
       if (api.data) {
         alert("User Login successfully");
         // localStorage.setItem("ChatApp", JSON.stringify(api.data)); // Store data properly
-        navigate("/");
+        // navigate("/");
+        window.location.href="/";
       }
     } catch (error) {
       if (error.response) {

@@ -61,7 +61,9 @@ const {authUser,SetAuthUser}=useAuth;
         alert("Error: No response from server. Please check your network.");
       } else {
         // Other errors (e.g., setting up the request)
-        alert("Error: " + error.message);
+        console.log(error.message);
+        
+        // alert("Error: " + error.message);
       }
     }
     

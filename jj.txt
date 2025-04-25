@@ -1,0 +1,9 @@
+.......message model 
+
+senderId
+receiverId
+message=""
+
+.....  conversation model.....
+member[senderid,receiverid]
+message[_id]

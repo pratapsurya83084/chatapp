@@ -3,30 +3,40 @@ import axios from 'axios';
 import { useAuth } from '../../context/AuthProvider'
 const User = () => {
   const [user, setUser] = useState([]);
+  // console.log(user);
+  
   const [authUser] = useAuth();
-  console.log("get jwt : ", authUser);
+  // console.log("get jwt : ", authUser);
   useEffect(() => {
     const getUsers = async () => {
       try {
         const api = await axios.get("http://localhost:2000/user/alluser", {
           headers: {
             "Content-Type": "application/json",
-            "authorization":authUser
+            "Authorization": `Bearer ${authUser}`,  
           },
+          withCredentials: true,
         });
-        console.log("Fetched once:", api.data.user);
-        setUser(api.data.user); 
+        console.log("Fetched once:", api.data);  
+        setUser(api.data);
+      
       } catch (error) {
+        alert("session expired ! please login please.")
         console.log("Error occurred:", error);
+       window.location.href="/login"
+
       }
     };
+  
+    if (authUser) {  
+      getUsers();
+    }
+  }, [authUser]); 
 
-    getUsers();
-  }, []);
 
   return (
     <div>
-      {user.map((user, index) => (
+      {user?.map((user, index) => (
         <div key={index} className="flex space-x-4 py-3 px-6 hover:bg-gray-800 mt-0 duration-300 cursor-pointer">
           <div className="avatar online">
             <div className="w-14 rounded-full">

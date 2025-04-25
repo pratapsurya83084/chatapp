@@ -40,25 +40,23 @@ const registerUser = async (req, res) => {
 };
 
 //get all user
-const getUsers = async (req, res) => {
+// The `allUsers` controller will be executed after the middleware
+const allUsers = async (req, res) => {
   try {
-    const loggedUserId = req.user._id; // The ID of the logged-in user
+    const loggedInUser = req.user._id; // Get the logged-in user from `req.user` set by middleware
 
-    // Find all users, excluding the logged-in user
-    const allUsers = await User.find({ _id: { $ne: loggedUserId } });
+    // Fetch users from DB, excluding the logged-in user
+    const filteredUsers = await User.find({
+      _id: { $ne: loggedInUser },
+    }).select("-password"); // Exclude password from user data
 
-    if (!allUsers || allUsers.length === 0) {
-      return res.status(404).json({ message: "No users found" });
-    }
-
-    // Return all users except the logged-in user
-    res.status(200).json({ message: "Users found", users: allUsers });
+    // Send the filtered list of users back to the client
+    res.status(200).json(filteredUsers); // Successful response with the filtered users
   } catch (error) {
-    console.error("Error fetching users:", error);
-    res.status(500).json({ message: "Server error" });
+    console.log('Error in allUsers Controller:', error);
+    res.status(500).json({ error: 'Server error' }); // Send a server error if something goes wrong
   }
 };
-
 
 
 //login
@@ -81,7 +79,7 @@ const loginUser = async (req, res) => {
     // Compare the provided password with the hashed password in the database
     const isPasswordValid = await bcrypt.compare(password, user.password);
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECREATE, {
-      expiresIn: "1h",
+      expiresIn: "5s",
     });
 
     //setcookies token
@@ -128,4 +126,4 @@ const logoutUser = async (req, res) => {
   }
 };
 
-export { registerUser, getUsers, loginUser, logoutUser };
+export { registerUser, allUsers, loginUser, logoutUser };

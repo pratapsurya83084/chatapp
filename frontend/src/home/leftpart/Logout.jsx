@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { BiLogOutCircle } from "react-icons/bi";
 
 const Logout = () => {
+  const [logout,setLogout]=useState("logout")
   const log = async () => {
     const logoutUser = await axios.post(
       "http://localhost:2000/user/logout",
@@ -19,12 +20,14 @@ const Logout = () => {
 
   return (
     <button
-      onClick={log}
-      className="flex items-center gap-2  text-white px-4 py-2 rounded "
-    >
-      <BiLogOutCircle size={24} /> {/* Sets the size of the icon */}
-      {/* <span>Logout</span> */}
-    </button>
+  onClick={log}
+  className="flex items-center gap-2 text-white px-4 py-2 rounded group relative"
+>
+  <BiLogOutCircle size={24} />
+  <span className="absolute left-full ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    Logout
+  </span>
+</button>
   );
 };
 
