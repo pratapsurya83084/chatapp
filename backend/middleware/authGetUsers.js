@@ -8,18 +8,18 @@ const auth = async (req, res, next) => {
       return res.status(401).json({ error: 'No token, authorization denied' });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECREATE); // Verify the token using the secret
+    const decoded = jwt.verify(token, process.env.JWT_SECREATE); // Verify the token 
     if (!decoded) {
       return res.status(401).json({ error: 'Invalid Token' });
     }
 
-    const user = await User.findById(decoded.id).select("-password"); // Fetch the user from DB
+    const user = await User.findById(decoded.id).select("-password"); // feetch the user from DB
     if (!user) {
       return res.status(401).json({ error: 'No user found' });
     }
 
-    req.user = user; // Attach user to the request object
-    next(); // Proceed to the next middleware/controller
+    req.user = user; // current loggedIn User
+    next(); 
   } catch (error) {
     console.error('JWT auth error:', error.message);
     if (!res.headersSent) {
