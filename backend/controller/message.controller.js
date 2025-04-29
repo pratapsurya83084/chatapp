@@ -51,10 +51,6 @@ export const sendMessage = async (req, res) => {
 
 
 
-
-
-
-
 export const getAllMessage = async (req, res) => {
   try {
     const chatUserId = req.params.id; // receiverId from params
@@ -64,8 +60,10 @@ export const getAllMessage = async (req, res) => {
     // Find conversation between two users
     const conversation = await Conversation.findOne({
       members: { $all: [senderId, chatUserId] },
-    }).populate("messages");  //messages id
-console.log(conversation);
+    }).populate("messages");  //refers to (messages) model
+
+
+    // console.log(conversation);
 
     if (!conversation) {
       return res.status(404).json({
@@ -73,8 +71,10 @@ console.log(conversation);
         messages: [],
       });
     }
+// console.log(conversation);
 
-    const messages = conversation.messages;  //  messages is 
+    const messages = conversation.messages;  //  messages is array
+// console.log(messages);
 
     return res.status(200).json({
       message: "Messages fetched successfully.",

@@ -79,7 +79,7 @@ const loginUser = async (req, res) => {
     // Compare the provided password with the hashed password in the database
     const isPasswordValid = await bcrypt.compare(password, user.password);
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECREATE, {
-      expiresIn: "1h",
+      expiresIn: "3h",
     });
 
     //setcookies token
