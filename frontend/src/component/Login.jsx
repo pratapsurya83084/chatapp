@@ -22,7 +22,8 @@ const Login = () => {
         withCredentials: true, //must be required for set cooies in broweser
       });
 
-      // console.log(api.data);
+      console.log(api.data);
+      localStorage.setItem("ChatApp",JSON.stringify(api.data));
 
       if (api.data) {
         alert("User Login successfully");

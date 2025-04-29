@@ -1,6 +1,9 @@
 import React from "react";
-
+import UseConversation from "../../zustand/UseConversation";
 const ChatUser = () => {
+const {selectedConversation}=UseConversation()
+// console.log(selectedConversation.fullname);
+
   return (
     <div className="flex justify-center gap-5 h-[8vh] bg-slate-800 hover:bg-slate-600 duration-500 py-2 ">
       <div className="avatar online cursor-pointer">
@@ -11,7 +14,7 @@ const ChatUser = () => {
 
       {/* name and status online or offline */}
       <div>
-        <h1 className="text-xl">pratap</h1>
+        {/* <h1 className="text-xl">{selectedConversation?selectedConversation.fullname:""}</h1> */}
         <h2 className="text-sm">online</h2>
       </div>
     </div>

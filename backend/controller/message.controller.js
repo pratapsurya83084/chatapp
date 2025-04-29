@@ -4,7 +4,7 @@ import Message from "../models/message.model.js";
 export const sendMessage = async (req, res) => {
   //write send message logic
   try {
-    var { messages } = req.body; //take user message
+    var { message } = req.body; //take user message
     var receiverId = req.params.id; // receiverId
     var senderId = req.user._id; //senderId i.e current loggedIn User
 
@@ -24,7 +24,7 @@ export const sendMessage = async (req, res) => {
     var newMessage = new Message({
       senderId,
       receiverId,
-      messages,
+      message,
     });
 
     if (newMessage) {
@@ -55,7 +55,7 @@ export const getAllMessage = async (req, res) => {
   try {
     const chatUserId = req.params.id; // receiverId from params
     const senderId = req.user._id; // senderId from authenticated user
-    console.log(senderId);
+    // console.log(senderId);
 
     // Find conversation between two users
     const conversation = await Conversation.findOne({
