@@ -60,8 +60,9 @@ const Messages = () => {
           <Message key={message._id} messages={message} />
         ))
       ) : (
-        <div className="mt-[20%] text-center items-center h-screen">
-          <p>Say Hi! to start the Conversation</p>
+        <div className="mt-[20%] text-center items-center h-screen text-slate-500">
+          <h1>welcome   <span className="text-bold text-xl text-slate-400">  {JSON.parse(localStorage.getItem("ChatApp")).user.fullname} </span></h1>
+          <p>No chat! selected . please start by selecting anyone to your contacts</p>
         </div>
       )}
 

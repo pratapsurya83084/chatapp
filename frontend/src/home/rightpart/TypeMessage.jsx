@@ -41,26 +41,33 @@ const TypeMessage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex items-center gap-2 px-6 h-[8vh] bg-slate-800">
-        <div className="flex-1">
-          <input
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            type="text"
-            placeholder="Type your message"
-            className="border border-gray-700 rounded-lg p-2 outline-none w-full"
-          />
+   <div>
+
+    {
+      selectedConversation?( <form onSubmit={handleSubmit}>
+        <div className="flex items-center gap-2 px-6 h-[8vh] bg-slate-800">
+          <div className="flex-1">
+            <input
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              type="text"
+              placeholder="Type your message"
+              className="border border-gray-700 rounded-lg p-2 outline-none w-full"
+            />
+          </div>
+          <button
+            type="submit"
+            className="text-blue-500 hover:text-blue-700"
+            disabled={loading}
+          >
+            <IoSend size={24} />
+          </button>
         </div>
-        <button
-          type="submit"
-          className="text-blue-500 hover:text-blue-700"
-          disabled={loading}
-        >
-          <IoSend size={24} />
-        </button>
-      </div>
-    </form>
+      </form>):
+
+      ("")
+    }
+   </div>
   );
 };
 

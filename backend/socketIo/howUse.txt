@@ -1,0 +1,8 @@
+step 1. install socket.io => npm install socket.io 
+step 2. create a socket server
+step 3. create http server
+step 4. connect io to socket and create socket id 
+step 5. disconnect from socket.
+
+
+step 6. create sockt in frontend .      
