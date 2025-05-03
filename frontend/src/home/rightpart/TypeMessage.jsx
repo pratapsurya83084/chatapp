@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { IoSend } from "react-icons/io5";
 import UseConversation from "../../zustand/UseConversation";
@@ -20,17 +19,16 @@ const TypeMessage = () => {
 
     // Create a new message object (simulate the response you expect from the backend)
     const newMessage = {
-      _id: Date.now(), 
+      _id: Date.now(),
       senderId: selectedConversation._id,
       message: message,
     };
 
-  
-    setMessages([newMessage, ...messages]); 
+    setMessages([newMessage, ...messages]);
 
-    setMessage(""); 
+    setMessage("");
 
-    // Fetch updated messages from the backend
+   // Fetch updated messages from the backend  again call getmessage for update all message without reloading
     try {
       const res = await axios.get(
         `http://localhost:2000/message/getmessage/${selectedConversation._id}`,

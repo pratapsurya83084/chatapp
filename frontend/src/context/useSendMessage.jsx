@@ -17,12 +17,12 @@ const useSendMessage = () => {
         { withCredentials: true }
       );
 
-      if (res.data && res.data.messages) {
-        console.log("Message sent:", res.data.messages); // This should contain the updated messages
+      // if (res.data && res.data.messages) {
+      //   console.log("Message sent:", res.data.messages); // This should contain the updated messages
         setMessages(res.data.messages); // Update the messages with the response data
-      } else {
-        console.error("No messages returned from server.");
-      }
+      // } else {
+      //   console.error("No messages returned from server.");
+      // }
     } catch (error) {
       console.error("Error sending message:", error);
     } finally {

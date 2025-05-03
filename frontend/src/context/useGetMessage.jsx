@@ -9,7 +9,7 @@ const useGetMessage = () => {
 useEffect(() => {
     const getMessage = async () => {
       setLoading(true);
-      // Clear previous messages before new fetch
+      // Clear previous messages 
       setMessages([]); //very imp  if not use then same message shows other user chat
 
       if (selectedConversation && selectedConversation._id) {
