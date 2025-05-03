@@ -4,8 +4,9 @@ import axios from "axios";
 const useGetMessage = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = UseConversation();
+// console.log(messages);
 
-  useEffect(() => {
+useEffect(() => {
     const getMessage = async () => {
       setLoading(true);
       // Clear previous messages before new fetch
@@ -19,8 +20,11 @@ const useGetMessage = () => {
               withCredentials: true,
             }
           );
-          console.log(res.data);
+
+          // console.log(res.data);
+
           setMessages(res.data.messages);
+
         } catch (error) {
           console.log("Error in getting message :", error);
           setLoading(false);
@@ -33,9 +37,11 @@ const useGetMessage = () => {
     };
 
     getMessage();
+
   }, [selectedConversation, setMessages]);
 
   return { loading, messages };
 };
 
 export default useGetMessage;
+
