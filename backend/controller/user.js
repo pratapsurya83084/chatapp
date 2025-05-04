@@ -103,9 +103,79 @@ const loginUser = async (req, res) => {
         .json({ message: "Invalid email or password", status: false });
     }
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    console.error("Login error:", error); // ✅ log for debugging
+    return res.status(500).json({
+      message: "Server error",
+      error: error.message,
+    });
   }
 };
+
+
+
+
+
+// const loginUser = async (req, res) => {
+//   const { email, password } = req.body;
+
+//   if (!email || !password) {
+//     return res.status(401).json({
+//       message: "Please provide both email and password",
+//     });
+//   }
+
+//   try {
+//     const user = await User.findOne({ email });
+//     if (!user) {
+//       return res.status(404).json({ message: "User not found" });
+//     }
+
+//     const isPasswordValid = await bcrypt.compare(password, user.password);
+
+//     if (!isPasswordValid) {
+//       return res
+//         .status(400)
+//         .json({ message: "Invalid email or password", status: false });
+//     }
+
+//     const token = jwt.sign({ id: user._id }, process.env.JWT_SECREATE, {
+//       expiresIn: "3h",
+//     });
+
+//     res.cookie("jwt", token, {
+//       httpOnly: true,   // ✅ FIXED typo
+//       secure: false,    // set true only in production over HTTPS
+//       sameSite: "lax",
+//     });
+
+//     return res.status(200).json({
+//       message: "Logged in successfully",
+//       user,
+//       status: true,
+//       token,
+//     });
+//   } catch (error) {
+//     console.error("Login error:", error); // ✅ log for debugging
+//     return res.status(500).json({
+//       message: "Server error",
+//       error: error.message,
+//     });
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //logout
 const logoutUser = async (req, res) => {

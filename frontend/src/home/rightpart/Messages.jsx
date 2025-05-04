@@ -2,47 +2,26 @@ import useGetMessage from "../../context/useGetMessage";
 import Loading from "../../component/Loading.jsx";
 import UseConversation from "../../zustand/UseConversation";
 import Message from "../rightpart/Message.jsx";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+// import { useRef } from "react";
 const Messages = () => {
   const { messages } = useGetMessage();
   const { selectedConversation, setMessages } = UseConversation();
   const [loading, setLoading] = useState(false);
-  // console.log(messages);
 
+  const lastMessageRef = useRef();
 
-  //unwanted code no need
-  // async function apiGetmessage() {
-  //   setLoading(true);
-  //   // Clear previous messages before new fetch
-  //   setMessages([]); //very imp  if not use then same message shows other user chat
+  useEffect(() => {
+    const scrollToLastMessage = () => {
+      if (lastMessageRef.current) {
+        lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    };
 
-  //   if (selectedConversation && selectedConversation._id) {
-  //     try {
-  //       const res = await axios.get(
-  //         `http://localhost:2000/message/getmessage/${selectedConversation._id}`,
-  //         {
-  //           withCredentials: true,
-  //         }
-  //       );
-
-  //       // console.log(res.data);
-
-  //       setMessages(res.data.messages);
-  //     } catch (error) {
-  //       console.log("Error in getting message :", error);
-  //       setLoading(false);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   } else {
-  //     setLoading(false);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   apiGetmessage();
-  // }, []);
+    // Wait until DOM is painted
+    setTimeout(scrollToLastMessage, 100);
+  }, [messages]);
 
   return (
     <div
@@ -56,17 +35,26 @@ const Messages = () => {
       {loading ? (
         <Loading />
       ) : messages && messages.length > 0 ? (
-        messages.map((message) => (
-          <Message key={message._id} messages={message} />
+        messages.map((message,index) => (
+          <div key={message._id}   ref={index === messages.length - 1 ? lastMessageRef : null}>
+            <Message messages={message}  />
+          </div>
         ))
       ) : (
         <div className="mt-[20%] text-center items-center h-screen text-slate-500">
-          <h1>welcome   <span className="text-bold text-xl text-slate-400">  {JSON.parse(localStorage.getItem("ChatApp")).user.fullname} </span></h1>
-          <p>No chat! selected . please start by selecting anyone to your contacts</p>
+          <h1>
+            welcome{" "}
+            <span className="text-bold text-xl text-slate-400">
+              {" "}
+              {JSON.parse(localStorage.getItem("ChatApp")).user.fullname}{" "}
+            </span>
+          </h1>
+          <p>
+            No chat! selected . please start by selecting anyone to your
+            contacts
+          </p>
         </div>
       )}
-
- 
     </div>
   );
 };
