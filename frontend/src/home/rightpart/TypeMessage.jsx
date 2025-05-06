@@ -8,7 +8,7 @@ const TypeMessage = () => {
   const [message, setMessage] = useState("");
   const { loading, SendMessage } = useSendMessage();
   const { selectedConversation, setMessages, messages } = UseConversation();
-
+ const backendUrl = "https://chatapp-2-erj3.onrender.com"
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,7 +31,7 @@ const TypeMessage = () => {
    // Fetch updated messages from the backend  again call getmessage for update all message without reloading
     try {
       const res = await axios.get(
-        `http://localhost:2000/message/getmessage/${selectedConversation._id}`,
+        `${backendUrl}/message/getmessage/${selectedConversation._id}`,
         { withCredentials: true }
       );
       setMessages(res.data.messages); // Update messages with the latest fetched data

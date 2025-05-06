@@ -8,11 +8,11 @@ const useSendMessage = () => {
 
   const SendMessage = async (message) => {
     if (!message.trim() || !selectedConversation?._id) return;
-
+const backendUrl = "https://chatapp-2-erj3.onrender.com"
     setLoading(true);
     try {
       const res = await axios.post(
-        `http://localhost:2000/message/send/${selectedConversation._id}`,
+        `${backendUrl}/message/send/${selectedConversation._id}`,
         { message },
         { withCredentials: true }
       );

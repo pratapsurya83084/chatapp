@@ -21,9 +21,9 @@ export const SocketProvider = ({ children }) => {
     // Proceed if user is authenticated
     if (authUser?._id) {
       console.log("📤 Connecting with userId:", authUser._id);
-
+const backendUrl = "https://chatapp-2-erj3.onrender.com"
       // Create socket connection
-      const newSocket = io("http://localhost:2000", {
+      const newSocket = io(`${backendUrl}`, {
         query: { userId: authUser._id },
         transports:['websocket','polling'],  //allow both websocket and polling
         

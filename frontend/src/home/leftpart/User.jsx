@@ -100,11 +100,11 @@ const User = () => {
 console.log("users :",user);
 console.log(onlineUsers);
 
-
+ const backendUrl = "https://chatapp-2-erj3.onrender.com"
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const api = await axios.get("http://localhost:2000/user/alluser", {
+        const api = await axios.get(`${backendUrl}/user/alluser`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${authUser}`,

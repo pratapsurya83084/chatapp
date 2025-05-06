@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
+  const backendUrl = "https://chatapp-2-erj3.onrender.com"
   const {
     register,
     handleSubmit,
@@ -15,7 +16,7 @@ const Login = () => {
 
     try {
       // Call API
-      const api = await axios.post("http://localhost:2000/user/login", data, {
+      const api = await axios.post(`${backendUrl}/user/login`, data, {
         headers: {
           "Content-Type": "application/json",
         },

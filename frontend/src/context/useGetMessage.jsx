@@ -11,11 +11,11 @@ useEffect(() => {
       setLoading(true);
       // Clear previous messages 
       setMessages([]); //very imp  if not use then same message shows other user chat
-
+const backendUrl = "https://chatapp-2-erj3.onrender.com"
       if (selectedConversation && selectedConversation._id) {
         try {
           const res = await axios.get(
-            `http://localhost:2000/message/getmessage/${selectedConversation._id}`,
+            `${backendUrl}/message/getmessage/${selectedConversation._id}`,
             {
               withCredentials: true,
             }

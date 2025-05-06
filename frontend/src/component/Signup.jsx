@@ -15,7 +15,7 @@ const Signup = () => {
   const [Error, setError] = useState();
 const {authUser,SetAuthUser}=useAuth;
 // console.log("user authen :",authUser);
-
+ const backendUrl = "https://chatapp-2-erj3.onrender.com"
   const onSubmit =async (data) => {
     // console.log(data.password,data.confirmpassword); // Handle form submission (you can send it to backend)
     if (data.password != data.confirmpassword) {
@@ -33,7 +33,7 @@ const {authUser,SetAuthUser}=useAuth;
     try {
       // Call API
       const api = await axios.post(
-        "http://localhost:2000/user/register",
+        `${backendUrl}/user/register`,
         userInfo,
         {
           headers: {
