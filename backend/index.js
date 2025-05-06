@@ -74,7 +74,7 @@ const server = http.createServer(app); // 🔥 Attach Express to HTTP server
 
 const io = new Server(server, {
   cors: {
-    origin:"https://mern-chatapp.netlify.app",
+    origin:"https://mernstackchatapplication.netlify.app",
     // "http://localhost:5173", // Frontend URL
     credentials: true // Allow credentials (cookies, authorization headers, etc.)
   }
@@ -82,7 +82,7 @@ const io = new Server(server, {
 
 // Middleware setup
 app.use(cors({
-  origin:"https://mern-chatapp.netlify.app",
+  origin:"https://mernstackchatapplication.netlify.app",
   //  "http://localhost:5173", // React frontend URL
   credentials: true // Enable credentials (cookies, authentication)
 }));

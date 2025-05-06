@@ -100,7 +100,7 @@ const User = () => {
 console.log("users :",user);
 console.log(onlineUsers);
 
- const backendUrl = "https://chatapp-2-erj3.onrender.com"
+ const backendUrl = "https://chatapp-3yzu.onrender.com"
   useEffect(() => {
     const getUsers = async () => {
       try {
