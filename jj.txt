@@ -43,3 +43,17 @@ Unlike React Context, Zustand doesn't trigger unnecessary re-renders in all cons
 
 Persist, Middleware, and More
 Zustand has built-in support for persistence (e.g., localStorage), middleware (e.g., logging, devtools), and asynchronous logic.
+
+
+
+
+
+
+
+
+
+
+
+
+
+http://localhost:2000/user/alluser
