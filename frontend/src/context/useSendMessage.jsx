@@ -8,7 +8,7 @@ const useSendMessage = () => {
 
   const SendMessage = async (message) => {
     if (!message.trim() || !selectedConversation?._id) return;
-const backendUrl = "https://chatapp-3yzu.onrender.com"
+const backendUrl = "https://chatapp-4-ca16.onrender.com"
     setLoading(true);
     try {
       const res = await axios.post(

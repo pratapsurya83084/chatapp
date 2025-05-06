@@ -21,7 +21,7 @@ export const SocketProvider = ({ children }) => {
     // Proceed if user is authenticated
     if (authUser?._id) {
       console.log("📤 Connecting with userId:", authUser._id);
-const backendUrl = "https://chatapp-3yzu.onrender.com"
+const backendUrl = "https://chatapp-4-ca16.onrender.com"
       // Create socket connection
       const newSocket = io(`${backendUrl}`, {
         query: { userId: authUser._id },

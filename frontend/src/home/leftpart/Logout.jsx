@@ -4,7 +4,7 @@ import { BiLogOutCircle } from "react-icons/bi";
 
 const Logout = () => {
   const [logout,setLogout]=useState("logout")
-  const backendUrl = "https://chatapp-3yzu.onrender.com"
+  const backendUrl = "https://chatapp-4-ca16.onrender.com"
   const log = async () => {
     const logoutUser = await axios.post(
       `${backendUrl}/user/logout`,

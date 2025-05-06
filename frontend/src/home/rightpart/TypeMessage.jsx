@@ -8,7 +8,7 @@ const TypeMessage = () => {
   const [message, setMessage] = useState("");
   const { loading, SendMessage } = useSendMessage();
   const { selectedConversation, setMessages, messages } = UseConversation();
- const backendUrl = "https://chatapp-3yzu.onrender.com"
+ const backendUrl = "https://chatapp-4-ca16.onrender.com"
   const handleSubmit = async (e) => {
     e.preventDefault();
 

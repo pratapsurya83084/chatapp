@@ -83,12 +83,18 @@ const loginUser = async (req, res) => {
     });
 
     //setcookies token
+    // res.cookie("jwt", token, {
+    //   httpsOnly: true, // So that you can read it from the frontend
+    //   secure: true, // Allow it on non-HTTPS (localhost or development)
+    //   sameSite: "lax", // Allow cookie sharing
+    // });
     res.cookie("jwt", token, {
-      httpsOnly: true, // So that you can read it from the frontend
-      secure: true, // Allow it on non-HTTPS (localhost or development)
-      sameSite: "lax", // Allow cookie sharing
+      httpOnly: true,      // Corrected spelling: cannot be accessed by JS
+      secure: true,        // Required for cross-site on HTTPS
+      sameSite: "None",    // Required for cross-site cookies
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
-
+    
     // console.log(token)
     if (isPasswordValid) {
       return res.status(200).json({

@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
-  const backendUrl = "https://chatapp-3yzu.onrender.com"
+  const backendUrl = "https://chatapp-4-ca16.onrender.com"
   const {
     register,
     handleSubmit,

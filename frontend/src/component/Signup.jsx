@@ -15,7 +15,7 @@ const Signup = () => {
   const [Error, setError] = useState();
 const {authUser,SetAuthUser}=useAuth;
 // console.log("user authen :",authUser);
- const backendUrl = "https://chatapp-3yzu.onrender.com"
+ const backendUrl = "https://chatapp-4-ca16.onrender.com"
   const onSubmit =async (data) => {
     // console.log(data.password,data.confirmpassword); // Handle form submission (you can send it to backend)
     if (data.password != data.confirmpassword) {
